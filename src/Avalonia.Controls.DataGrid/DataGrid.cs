@@ -2370,6 +2370,9 @@ namespace Avalonia.Controls
                 {
                     DisplayData.PendingVerticalScrollHeight = scrollHeight;
                     handled = true;
+                    
+                    var eventType = scrollHeight > 0 ? ScrollEventType.SmallIncrement : ScrollEventType.SmallDecrement;
+                    VerticalScroll?.Invoke(this, new ScrollEventArgs(eventType, delta.Y));
                 }
 
                 // Horizontal scroll handling
@@ -2392,6 +2395,9 @@ namespace Avalonia.Controls
                         // We don't need to invalidate once again after UpdateHorizontalOffset.
                         ignoreInvalidate = true;
                         handled = true;
+                        
+                        var eventType = delta.X > 0 ? ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement;
+                        HorizontalScroll?.Invoke(this, new ScrollEventArgs(eventType, delta.X));
                     }
                 }
 
