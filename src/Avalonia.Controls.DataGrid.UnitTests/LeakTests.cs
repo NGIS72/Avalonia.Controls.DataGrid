@@ -21,11 +21,11 @@ public class LeakTests
         DotMemoryUnitTestOutput.SetOutputMethod(output.WriteLine);
     }
 
-    [Fact]
+    [Fact(Skip = "Run with dotMemory")]
     [SuppressMessage("Usage", "xUnit1031:Do not use blocking task operations in test method", Justification = "Needed for dotMemoryUnit to work")]
     public void DataGrid_Is_Freed()
     {
-        // When attached to INotifyCollectionChanged, DataGrid will subscribe to it's events, potentially causing leak
+        // When attached to INotifyCollectionChanged, DataGrid will subscribe to its events, potentially causing leak
         var run = async () =>
         {
             using var session = HeadlessUnitTestSession.StartNew(typeof(Application));
