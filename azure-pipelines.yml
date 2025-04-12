@@ -19,6 +19,12 @@ steps:
       Write-Output "Setting versionSuffix to '$versionSuffix'"
       Write-Output "##vso[task.setvariable variable=versionSuffix]$versionSuffix"
 
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK'
+  inputs:
+    packageType: sdk
+    useGlobalJson: true
+
 - script: echo "##vso[task.setvariable variable=commonDotNetParameters]-c $(configuration) -p:CIBranchName='$(Build.SourceBranchName)' -p:CIVersionSuffix='$(versionSuffix)'"
   displayName: 'Set variables'
 
