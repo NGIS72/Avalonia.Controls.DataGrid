@@ -96,7 +96,7 @@ public class DataGridRowTests
         var items = Enumerable.Range(0, 100).Select(x => new Model($"Item {x}")).ToList();
         DataGrid target = CreateTarget(items, [WithHeader()]);
        
-       // target.HeadersVisibility = DataGridHeadersVisibility.All;
+        // target.HeadersVisibility = DataGridHeadersVisibility.All;
         var rows = GetRows(target);
 
         Assert.All(rows, x => Assert.Equal(target.Bounds.Width, x.Bounds.Width));
@@ -108,7 +108,7 @@ public class DataGridRowTests
     {
         var root = new Window
         {
-            Width = 100,
+            Width = 200,
             Height = 100,
             Styles =
             {
