@@ -2396,7 +2396,7 @@ namespace Avalonia.Controls
                         ignoreInvalidate = true;
                         handled = true;
                         
-                        var eventType = horizontalOffset > 0 ? ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement;
+                        var eventType = horizontalOffset > 0 ? ScrollEventType.SmallIncrement : ScrollEventType.SmallDecrement;
                         HorizontalScroll?.Invoke(this, new ScrollEventArgs(eventType, horizontalOffset));
                     }
                 }
