@@ -4,6 +4,7 @@
     <TargetFramework>$(AvsCurrentTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>Avalonia.Controls.DataGridTests</RootNamespace>
   </PropertyGroup>
@@ -15,7 +16,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Avalonia.Headless.XUnit" Version="11.2.5" />
+    <PackageReference Include="Avalonia.Headless.XUnit" Version="$(AvaloniaVersion)" />
     <PackageReference Include="JetBrains.dotMemoryUnit" Version="3.2.20220510" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
