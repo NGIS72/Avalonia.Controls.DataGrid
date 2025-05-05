@@ -157,21 +157,10 @@ namespace Avalonia.Controls
         // does not know their actual height. The heights used for the approximation are the ones
         // set as the rows were scrolled off.
         private double _verticalOffset;
-        private byte _verticalScrollChangesIgnored;
-        
-        public double VerticalScrollOffset => _verticalOffset;
-        
-        public double HorizontalScrollOffset => _horizontalOffset;        
+        private byte _verticalScrollChangesIgnored;     
         
         public event EventHandler<ScrollEventArgs> HorizontalScroll;
         public event EventHandler<ScrollEventArgs> VerticalScroll;
-
-        /// <summary>
-        /// Cumulated height of all known rows, including the gridlines and details section.
-        /// This property returns an approximation of the actual total row heights and also
-        /// updates the RowHeightEstimate
-        /// </summary>
-        public double RowsTotalHeight => EdgedRowsHeightCalculated;
 
         /// <summary>
         /// Identifies the CanUserReorderColumns dependency property.
@@ -2383,7 +2372,7 @@ namespace Avalonia.Controls
                     handled = true;
                     
                     var eventType = scrollHeight > 0 ? ScrollEventType.SmallIncrement : ScrollEventType.SmallDecrement;
-                    VerticalScroll?.Invoke(this, new ScrollEventArgs(eventType, delta.Y));
+                    VerticalScroll?.Invoke(this, new ScrollEventArgs(eventType, scrollHeight));
                 }
 
                 // Horizontal scroll handling
@@ -2407,8 +2396,8 @@ namespace Avalonia.Controls
                         ignoreInvalidate = true;
                         handled = true;
                         
-                        var eventType = delta.X > 0 ? ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement;
-                        HorizontalScroll?.Invoke(this, new ScrollEventArgs(eventType, delta.X));
+                        var eventType = horizontalOffset > 0 ? ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement;
+                        HorizontalScroll?.Invoke(this, new ScrollEventArgs(eventType, horizontalOffset));
                     }
                 }
 
