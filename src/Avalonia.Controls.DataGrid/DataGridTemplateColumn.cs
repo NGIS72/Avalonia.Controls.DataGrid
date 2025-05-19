@@ -123,7 +123,7 @@ namespace Avalonia.Controls
 
         protected internal override void RefreshCellContent(Control element, string propertyName)
         {
-            var cell = element.Parent as DataGridCell;
+            var cell = element?.Parent as DataGridCell;
             if(propertyName == nameof(CellTemplate) && cell is not null)
             {
                 cell.Content = GenerateElement(cell, cell.DataContext);
