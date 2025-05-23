@@ -157,8 +157,7 @@ namespace Avalonia.Controls
         // does not know their actual height. The heights used for the approximation are the ones
         // set as the rows were scrolled off.
         private double _verticalOffset;
-        private byte _verticalScrollChangesIgnored;     
-        
+        private byte _verticalScrollChangesIgnored;
         public event EventHandler<ScrollEventArgs> HorizontalScroll;
         public event EventHandler<ScrollEventArgs> VerticalScroll;
 
