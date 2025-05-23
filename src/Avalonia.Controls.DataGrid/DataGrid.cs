@@ -2654,6 +2654,11 @@ namespace Avalonia.Controls
                 // We want to persist selection throughout a reset, so store away the selected items
                 List<object> selectedItemsCache = new List<object>(_selectedItems.SelectedItemsCache);
 
+                var collapsedGroupsCache = RowGroupHeadersTable
+                    .Where(g => !g.Value.IsVisible)
+                    .Select(g => g.Value.CollectionViewGroup.Key)
+                    .ToArray();
+
                 if (recycleRows)
                 {
                     RefreshRows(recycleRows, clearRows: true);
@@ -2661,6 +2666,16 @@ namespace Avalonia.Controls
                 else
                 {
                     RefreshRowsAndColumns(clearRows: true);
+                }
+
+                // collapse previously collapsed groups
+                foreach (var g in collapsedGroupsCache)
+                {
+                    var item = RowGroupHeadersTable.FirstOrDefault(t => t.Value.CollectionViewGroup.Parent.GroupBy.KeysMatch(t.Value.CollectionViewGroup.Key, g));
+                    if (item != null)
+                    {
+                        EnsureRowGroupVisibility(item.Value, false, false);
+                    }
                 }
 
                 // Re-select the old items
