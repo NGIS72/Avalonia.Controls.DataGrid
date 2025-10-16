@@ -20,6 +20,7 @@ namespace DataGridSample.Models
         public double? Phones { get; private set; }
         public double? BirthRate { get; private set; }
         public double? DeathRate { get; private set; }
+        public int Year { get; set; }
 
         public Country(string name, string region, int population, int area, double density, double coast, double? migration, 
                        double? infantMorality, int gdp, double? literacy, double? phones, double? birth, double? death)

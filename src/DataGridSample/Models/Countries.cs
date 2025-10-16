@@ -243,7 +243,17 @@ namespace DataGridSample.Models
             {
                 if (_all == null)
                 {
-                    _all = GetCountries().ToList().AsReadOnly();
+                    var list = new List<Country>();
+                    for (var year = 2035; year >= 1884; year--)
+                    {
+                        foreach (var c in GetCountries())
+                        {
+                            c.Year = year;
+                            list.Add(c);
+                        }
+                    }
+                    //_all = GetCountries().ToList().AsReadOnly();
+                    _all = list.AsReadOnly();
                 }
 
                 return _all;

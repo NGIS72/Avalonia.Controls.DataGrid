@@ -42,6 +42,8 @@
                     Width="200"
                     Increment="10"
                     Value="200"/>
+            <Button Content="Select legacy" Click="Select_Legacy_Click"/>
+            <Button Content="Select new" Click="Select_New_Click"/>
           </StackPanel>
           <DataGrid Name="dataGrid1" Margin="12" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" HeadersVisibility="All"
                     RowBackground="#1000">
@@ -53,6 +55,7 @@
             <DataGrid.Columns>
               <!-- Using HeaderTemplate -->
               <DataGridTextColumn Header="Country or Region" HeaderTemplate="{StaticResource Demo.DataTemplates.CountryHeader}" Binding="{Binding Name}"  Width="6*" x:DataType="models:Country" />
+              <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="50" x:DataType="models:Country" />
               <DataGridTextColumn Header="Region" Binding="{Binding Region}" Width="4*" x:DataType="models:Country" />
               <DataGridTextColumn Header="Population" Binding="{Binding Population}" Width="3*" x:DataType="models:Country" />
               <DataGridTextColumn Header="Area" Binding="{Binding Area}" Width="3*" x:DataType="models:Country" />

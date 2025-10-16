@@ -15,6 +15,8 @@ namespace DataGridSample
 {
     public partial class DataGridPage : UserControl
     {
+        private DataGrid _dg;
+
         public DataGridPage()
         {
             this.InitializeComponent();
@@ -23,6 +25,7 @@ namespace DataGridSample
             var collectionView1 = new DataGridCollectionView(Countries.All);
             collectionView1.SortDescriptions.Add(dataGridSortDescription);
             var dg1 = this.Get<DataGrid>("dataGrid1");
+            _dg = dg1;
             dg1.IsReadOnly = true;
             dg1.Sorting += (s, a) =>
             {
@@ -96,6 +99,41 @@ namespace DataGridSample
                     textBox.SelectAll();
                 }, DispatcherPriority.Loaded);
             }
+        }
+
+        private void Select_Legacy_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var list = (IList)_dg.ItemsSource;
+            var flag = false;
+            _dg.SelectedItems.Clear();
+            foreach (var item in list)
+            {
+                if (flag)
+                {
+                    _dg.SelectedItems.Add(item);
+                }
+                flag = !flag;
+            }
+
+        }
+
+        private void Select_New_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var list = (IList)_dg.ItemsSource;
+            var flag = false;
+            _dg.SelectedItems.Clear();
+            var items = new List<object>();
+            foreach (var item in list)
+            {
+                if (flag)
+                {
+                    items.Add(item);
+                }
+                flag = !flag;
+            }
+
+            _dg.SelectItems(items);
+
         }
     }
 }
