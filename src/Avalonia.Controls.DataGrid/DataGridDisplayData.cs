@@ -96,7 +96,7 @@ namespace Avalonia.Controls
             {
                 // For fully recycled rows, we need to set the Visibility back to Visible
                 DataGridRowGroupHeader groupHeader = _fullyRecycledGroupHeaders.Pop();
-                Visual.IsVisibleProperty.RouteClearValue(groupHeader);
+                groupHeader.ClearValue(Visual.IsVisibleProperty);
                 return groupHeader;
             }
             return null;
@@ -196,7 +196,7 @@ namespace Avalonia.Controls
             while (_recyclableRows.Count > 0)
             {
                 DataGridRow row = _recyclableRows.Pop();
-                Visual.IsVisibleProperty.RouteSetCurrentValue(row, false);
+                row.SetCurrentValue(Visual.IsVisibleProperty, false);
                 Debug.Assert(!_fullyRecycledRows.Contains(row));
                 _fullyRecycledRows.Push(row);
             }
@@ -204,7 +204,7 @@ namespace Avalonia.Controls
             while (_recyclableGroupHeaders.Count > 0)
             {
                 DataGridRowGroupHeader groupHeader = _recyclableGroupHeaders.Pop();
-                Visual.IsVisibleProperty.RouteSetCurrentValue(groupHeader, false);
+                groupHeader.SetCurrentValue(Visual.IsVisibleProperty, false);
                 Debug.Assert(!_fullyRecycledGroupHeaders.Contains(groupHeader));
                 _fullyRecycledGroupHeaders.Push(groupHeader);
             }
@@ -258,7 +258,7 @@ namespace Avalonia.Controls
             {
                 // For fully recycled rows, we need to set the Visibility back to Visible
                 DataGridRow row = _fullyRecycledRows.Pop();
-                Visual.IsVisibleProperty.RouteClearValue(row);
+                row.ClearValue(Visual.IsVisibleProperty);
                 return row;
             }
             return null;
